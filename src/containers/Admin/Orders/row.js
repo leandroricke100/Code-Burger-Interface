@@ -10,20 +10,25 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Typography from '@mui/material/Typography'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { useState } from 'react'
 
 import api from '../../../services/api'
 import status from './order-status'
 import { ProductImg, ReactSelectStyle } from './styles'
 
-function Row({ row }) {
-  const [open, setOpen] = React.useState(false)
-  const [isLoading, setIsLoading] = React.useState(false)
+function Row({ row, setOrders, orders }) {
+  const [open, setOpen] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  async function setNewStatus(id, status) {
+  async function setNewStatus(id, newStatus) {
     setIsLoading(true)
     try {
-      await api.put(`orders/${id}`, { status })
+      await api.put(`orders/${id}`, { status: newStatus })
+
+      const newOrders = orders.map(order => {
+        return order._id === id ? { ...order, status: newStatus } : order
+      })
+      setOrders(newOrders)
     } catch (err) {
       console.error(err)
     } finally {
@@ -32,7 +37,7 @@ function Row({ row }) {
   }
 
   return (
-    <React.Fragment>
+    <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
         <TableCell>
           <IconButton
@@ -50,7 +55,7 @@ function Row({ row }) {
         <TableCell>{row.date}</TableCell>
         <TableCell>
           <ReactSelectStyle
-            options={status}
+            options={status.filter(sts => sts.value !== 'Todos')}
             menuPortalTarget={document.body}
             placeholder="Status"
             defaultValue={
@@ -76,6 +81,7 @@ function Row({ row }) {
                     <TableCell>Quantidade</TableCell>
                     <TableCell>Produto</TableCell>
                     <TableCell>Categoria</TableCell>
+                    <TableCell></TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -100,19 +106,21 @@ function Row({ row }) {
           </Collapse>
         </TableCell>
       </TableRow>
-    </React.Fragment>
+    </>
   )
 }
 
 Row.propTypes = {
+  orders: PropTypes.array,
+  setOrders: PropTypes.func,
   row: PropTypes.shape({
     name: PropTypes.string.isRequired,
     orderId: PropTypes.string.isRequired,
     date: PropTypes.string.isRequired,
     status: PropTypes.string.isRequired,
-
     products: PropTypes.arrayOf(
       PropTypes.shape({
+        id: PropTypes.string.isRequired,
         quantity: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         category: PropTypes.string.isRequired,

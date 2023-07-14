@@ -75,7 +75,7 @@ function Orders() {
             <LinkMenu
               key={status.id}
               onClick={() => handleStatus(status)}
-              isActiveStatus={activeStatus === status.id}
+              $isactiveStatus={activeStatus === status.id}
             >
               {status.label}
             </LinkMenu>
@@ -96,7 +96,7 @@ function Orders() {
           <TableBody>
             {rows.map(row => (
               <Row
-                key={row.orderId}
+                key={row.orderId.toString()}
                 row={row}
                 setOrders={setOrders}
                 orders={orders}

@@ -120,7 +120,8 @@ Row.propTypes = {
     status: PropTypes.string.isRequired,
     products: PropTypes.arrayOf(
       PropTypes.shape({
-        id: PropTypes.string.isRequired,
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+          .isRequired,
         quantity: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         category: PropTypes.string.isRequired,

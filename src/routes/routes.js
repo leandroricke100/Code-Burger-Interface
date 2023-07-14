@@ -20,6 +20,10 @@ function MyRoutes() {
         <Route element={<PrivateRoute isAdmin />}>
           <Route element={<Admin />} path="/pedidos" />
         </Route>
+
+        <Route element={<PrivateRoute isAdmin />}>
+          <Route element={<Admin />} path="/listar-produtos" />
+        </Route>
       </Routes>
     </Router>
   )

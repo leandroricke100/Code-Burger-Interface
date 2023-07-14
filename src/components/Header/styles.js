@@ -18,9 +18,9 @@ export const ContainerLeft = styled.div`
 export const PageLink = styled.a`
   cursor: pointer;
   text-decoration: none;
-  color: ${props => (props.isActive ? '#9758A6' : '#555')};
+  color: ${props => (props.$isactive ? '#9758A6' : '#555')};
   font-size: 16px;
-  font-weight: ${props => (props.isActive ? 'bold' : 'normal')};
+  font-weight: ${props => (props.$isactive ? 'bold' : 'normal')};
 `
 
 export const ContainerRight = styled.div`

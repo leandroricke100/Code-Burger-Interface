@@ -14,7 +14,7 @@ import formateCurrency from '../../../utils/formatCurrency'
 import { Container, Img, EditIconStyles } from './styles'
 
 function ListProducts() {
-  const [product, setProducs] = useState([])
+  const [products, setProducs] = useState()
 
   useEffect(() => {
     async function loadOrders() {
@@ -47,24 +47,25 @@ function ListProducts() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {product.map(product => (
-              <TableRow
-                key={product.id.toString()}
-                sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-              >
-                <TableCell component="th" scope="row">
-                  {product.name}
-                </TableCell>
-                <TableCell>{formateCurrency(product.price)}</TableCell>
-                <TableCell align="center">{isOffer(product.offer)}</TableCell>
-                <TableCell align="center">
-                  <Img src={product.url} alt="imagem-produto" />
-                </TableCell>
-                <TableCell>
-                  <EditIconStyles />
-                </TableCell>
-              </TableRow>
-            ))}
+            {products &&
+              products.map(product => (
+                <TableRow
+                  key={product.id.toString()}
+                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                >
+                  <TableCell component="th" scope="row">
+                    {product.name}
+                  </TableCell>
+                  <TableCell>{formateCurrency(product.price)}</TableCell>
+                  <TableCell align="center">{isOffer(product.offer)}</TableCell>
+                  <TableCell align="center">
+                    <Img src={product.url} alt="imagem-produto" />
+                  </TableCell>
+                  <TableCell>
+                    <EditIconStyles />
+                  </TableCell>
+                </TableRow>
+              ))}
           </TableBody>
         </Table>
       </TableContainer>

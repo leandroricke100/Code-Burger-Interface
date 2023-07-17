@@ -1,0 +1,38 @@
+import styled from 'styled-components'
+
+import { Button } from '../../../components/Button'
+
+export const Container = styled.div`
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+
+  form {
+    background: #565656;
+    border-radius: 10px;
+    padding: 30px;
+  }
+`
+
+export const Label = styled.p`
+  font-size: 14px;
+  color: #ffffff;
+  margin-bottom: 3px;
+`
+
+export const Input = styled.input`
+  height: 30px;
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.1);
+  border: none;
+  margin-bottom: 25px;
+  width: 100%;
+`
+export const ButtonStyles = styled(Button)`
+  width: 100%;
+  margin-top: 25px;
+`
+export const LabelUpload = styled.label``

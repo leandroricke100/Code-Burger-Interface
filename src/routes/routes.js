@@ -29,6 +29,10 @@ function MyRoutes() {
         <Route element={<PrivateRoute isAdmin />}>
           <Route element={<Admin />} path={paths.NewProduct} />
         </Route>
+
+        <Route element={<PrivateRoute isAdmin />}>
+          <Route element={<Admin />} path={paths.EditProduct} />
+        </Route>
       </Routes>
     </Router>
   )

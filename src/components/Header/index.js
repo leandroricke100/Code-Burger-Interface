@@ -20,7 +20,7 @@ export function Header() {
   const location = useLocation()
   const { pathname } = location
 
-  console.log(userData)
+  // console.log(userData)
 
   const logoutUser = () => {
     logout()

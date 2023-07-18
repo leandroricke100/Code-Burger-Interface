@@ -65,9 +65,3 @@ export const SingInLink = styled.p`
     text-decoration: underline;
   }
 `
-export const ErrorMensage = styled.p`
-  color: #cc1717;
-  font-size: 14px;
-  font-style: normal;
-  margin-top: 2px;
-`
